@@ -1,11 +1,8 @@
 import { NextPage } from "next"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Image from "next/image"
-import Rows from "../components/displayHouses"
-import jwtDecode from "jwt-decode"
 
 const AuthPage: NextPage = () => {
-  const [isAuthorized, setIsAuthorized] = useState<boolean>(false) 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
@@ -15,19 +12,19 @@ const AuthPage: NextPage = () => {
   const checkAuth = async (email: string, password: string) => {
     const validate = { email, password }
     try {
-      const response = await fetch('/api/authUser', {
+      const req = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(validate)
-        })
+        }
+      const response = await fetch('/api/authUser', req)
       if (response.ok) {
         const result = await response.json()
         const { token } = result
         localStorage.setItem('user-token', token)
         setError(false)
-        setIsAuthorized(true) 
       } else if (response.status === 401) {
         setError(true)
       }
@@ -45,18 +42,6 @@ const AuthPage: NextPage = () => {
     }
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem('user-token')
-    const user = token ? jwtDecode(token) : null
-    if (user) {
-      setIsAuthorized(true)
-    }
-  }, [])
-
-  if (isAuthorized) {
-    return <Rows />
-  } else {
-   
   return (
     <div className="flex w-full h-full">
       <div className="p-4 basis-3/5">
@@ -78,13 +63,14 @@ const AuthPage: NextPage = () => {
           type="password" 
           placeholder="Enter password"
           onChange={(event) => setPassword(event.target.value)}></input>
-          <button className="p-2 mb-4 text-white bg-gray-300">Login</button>
+          <button className="p-2 mb-4 text-white bg-gray-300 transition-color" disabled={email && password ? false : true}>Login</button>
           <a className="text-sm font-bold text-right text-gray-300 underline" href="#">Forgot password?</a>
         </form>  
       </div>
       <div className="basis-2/5 h-screen bg-[url('/authimage.webp')] bg-center"></div>
     </div>
-  )}
+  )
 }
+
 
 export default AuthPage

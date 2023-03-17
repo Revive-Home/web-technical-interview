@@ -15,7 +15,7 @@ type Homes = {
   sqft: number
 }
 
-const Rows: NextPage = () => {
+const HouseDisplay: NextPage = () => {
   const [homes, setHomes] = useState<Homes[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
@@ -110,4 +110,4 @@ const Rows: NextPage = () => {
   }
 }
 
-export default Rows;
+export default HouseDisplay;

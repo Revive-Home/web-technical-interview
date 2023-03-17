@@ -23,16 +23,20 @@ export default async function handler(
     const data_path = path.join(process.cwd(), 'data/users.json')
     const file_data = await fs.readFile(data_path)
     const json_data = JSON.parse(file_data.toString())
+    let authorized = false
     for (let i = 0; i < json_data.length; i++) {
       if (json_data[i].email === email) {
         if (json_data[i].password === password) {
             const payload = { email }
             const token = jwt.sign(payload, process.env.TOKEN_SECRET as string)
+            authorized = true
             res.status(200).json({ token, user: payload })
         }
       }
     }
-    res.status(401).json({ Error: 'Invalid login'})
+    if (!authorized) {
+      res.status(401).json({ Error: 'Invalid login'})
+    }
   } catch (error) {
     console.log(error)
     res.status(401).json({ Error: 'Invalid login'})
