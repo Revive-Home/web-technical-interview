@@ -21,7 +21,7 @@ const Rows: NextPage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/hello")
+      const response = await fetch("/api/fetchHouses")
       if (response.ok) {
         const result = await response.json()
         setHomes(result)

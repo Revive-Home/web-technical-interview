@@ -1,7 +1,7 @@
 import { NextPage } from "next"
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import Rows from "./rows"
+import Rows from "../components/displayHouses"
 import jwtDecode from "jwt-decode"
 
 const AuthPage: NextPage = () => {
@@ -15,7 +15,7 @@ const AuthPage: NextPage = () => {
   const checkAuth = async (email: string, password: string) => {
     const validate = { email, password }
     try {
-      const response = await fetch('/api/auth', {
+      const response = await fetch('/api/authUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

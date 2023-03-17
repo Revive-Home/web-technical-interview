@@ -6,12 +6,17 @@ import jwt from "jsonwebtoken";
 
 
 type Data = {
-  name: string
+  Error: string
+}
+
+type Token = {
+  token: string,
+  user: object
 }
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Data | Token>
 ) {
   try {
     const { email, password } = req.body
@@ -27,9 +32,9 @@ export default async function handler(
         }
       }
     }
-    res.status(401).json({ name: 'Invalid login'})
+    res.status(401).json({ Error: 'Invalid login'})
   } catch (error) {
     console.log(error)
-    res.status(401).json({ name: 'Invalid login'})
+    res.status(401).json({ Error: 'Invalid login'})
   }
 }
