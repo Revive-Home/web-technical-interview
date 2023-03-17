@@ -12,6 +12,9 @@ module.exports = {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        'rows': "url('/public/house.jpg')"
+      }
     },
   },
   plugins: [],
