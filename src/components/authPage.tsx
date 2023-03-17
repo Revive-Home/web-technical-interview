@@ -25,6 +25,7 @@ const AuthPage: NextPage = () => {
         const { token } = result
         localStorage.setItem('user-token', token)
         setError(false)
+        location.reload()
       } else if (response.status === 401) {
         setError(true)
       }

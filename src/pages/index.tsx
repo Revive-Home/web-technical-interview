@@ -13,22 +13,6 @@ const Home: NextPage = () => {
       if (user) {
         setIsAuthorized(true)
       }
-
-      window.addEventListener('storage', () => {
-        const token = localStorage.getItem('user-token')
-        const user = token ? jwtDecode(token) : null
-        if (user) {
-          setIsAuthorized(true)
-        }
-      })
-
-      return () => window.removeEventListener('storage', () => {
-        const token = localStorage.getItem('user-token')
-        const user = token ? jwtDecode(token) : null
-        if (user) {
-          setIsAuthorized(true)
-        }
-      })
   }, [])
 
   if (isAuthorized) {
