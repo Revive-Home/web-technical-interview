@@ -21,7 +21,7 @@ const Home: NextPage = () => {
     )
   } else {
     return (
-      <AuthPage />
+        <AuthPage setIsAuthorized={setIsAuthorized} />
     )
   }
 }

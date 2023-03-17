@@ -1,8 +1,11 @@
-import { NextPage } from "next"
 import { useState } from "react"
 import Image from "next/image"
 
-const AuthPage: NextPage = () => {
+interface AuthProps {
+  setIsAuthorized: ((value:boolean) => void)
+}
+
+const AuthPage= (props: AuthProps) => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
@@ -25,7 +28,7 @@ const AuthPage: NextPage = () => {
         const { token } = result
         localStorage.setItem('user-token', token)
         setError(false)
-        location.reload()
+        props.setIsAuthorized(true)
       } else if (response.status === 401) {
         setError(true)
       }
@@ -72,6 +75,5 @@ const AuthPage: NextPage = () => {
     </div>
   )
 }
-
 
 export default AuthPage
