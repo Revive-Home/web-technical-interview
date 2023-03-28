@@ -1,13 +1,10 @@
 import type { NextPage } from "next"
-import Head from "next/head"
-import Image from "next/image"
-import styles from "../styles/Home.module.css"
-import Card from "../components/Card"
+import LoginPage from './LoginPage'
 
 const Home: NextPage = () => {
   return (
 <div>
-    <Card></Card>
+   <LoginPage/>
 </div>
 
   )
