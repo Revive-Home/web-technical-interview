@@ -1,11 +1,7 @@
-import React from 'react'
-import HomeDetails from '../components/HomeDetails'
-
+import HomeDetails from "../components/HomeDetails"
 
 const DetailsPage = () => {
-  return (
-    <HomeDetails/>
-  )
+  return <HomeDetails />
 }
 
 export default DetailsPage

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useEffect,useState } from "react"
-import { AiFillEye,AiFillEyeInvisible } from 'react-icons/ai'
+import { useEffect, useState } from "react"
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"
 import UsersData from "../../data/users.json"
 /* eslint-disable @next/next/no-img-element */
 
@@ -12,46 +12,49 @@ const LoginPage = () => {
   const [showAlertSuccess, setShowAlertSuccess] = useState(false)
   const [showAlertError, setShowAlertError] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  
-  useEffect(()=>{
-    if(showAlertSuccess) {
-      const timeout = setTimeout(()=>{
+
+  useEffect(() => {
+    //setting a set timeout of for pop up alert
+    if (showAlertSuccess) {
+      const timeout = setTimeout(() => {
         setShowAlertSuccess(false)
-      },6000)
-      return()=>clearTimeout(timeout)
+      }, 6000)
+      return () => clearTimeout(timeout)
     }
   }, [showAlertSuccess])
 
-
   const handleInputEmail = (e) => {
+    //getting user input for email and setting email state to user input
     const userEmail = e.target.value
+    //setting alert to false on change so user can type new email
     setShowAlertError(false)
     setEmail(userEmail)
   }
+
   const handleInputPassword = (e) => {
     const userPassword = e.target.value
+    setShowAlertError(false)
     setPassword(userPassword)
   }
   const handleAunthentication = () => {
     // set variable userFound as false
-    let userFound = false;
+    let userFound = false
     //map through UsersData json that I imported above
     UsersData.map((user) => {
       //if the user email and password match set my local storage user and alert user of successful sign on
       //set userFound to true and send user to UserPage
       if (user.email === email.toLowerCase() && user.password === password) {
-        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem("user", JSON.stringify(user))
         setShowAlertSuccess(true)
         userFound = true
         router.push("/UserPage")
         return
       }
     })
-   // if user is not found or invalid because of email and password show an alert
+    // if user is not found or invalid because of email and password show an alert
     if (!userFound) {
       setShowAlertError(true)
     }
-
   }
 
   return (
@@ -71,8 +74,9 @@ const LoginPage = () => {
                 onChange={handleInputEmail}
                 className="border my-2 px-1 placeholder:text-[14px] text-[24px] md:text-[18px]"
                 placeholder="Enter Email"
+                type="email"
               ></input>
-              <div className='relative'>
+              <div className="relative">
                 <input
                   value={password}
                   onChange={handleInputPassword}

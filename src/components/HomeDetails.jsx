@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { FaToilet } from 'react-icons/fa'
-import { MdBed,MdSquareFoot } from 'react-icons/md'
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
+import { FaToilet } from "react-icons/fa"
+import { MdBed, MdSquareFoot } from "react-icons/md"
 
 const HomeDetails = () => {
   const router = useRouter()
   //getting params from url
-  const {address, imageUrl,bathrooms,bedrooms,sqft, yearBuilt} = router.query
+  const { address, imageUrl, bathrooms, bedrooms, sqft, yearBuilt } =
+    router.query
 
   useEffect(() => {
     //clearing local storage if user refreshes page
@@ -19,7 +20,7 @@ const HomeDetails = () => {
     let user = JSON.parse(localStorage.getItem("user"))
     //if the user exists set the firstname state if not take user back to login page
     if (!user) {
-    router.push("/LoginPage")
+      router.push("/LoginPage")
     }
   }, [router])
 
@@ -34,7 +35,7 @@ const HomeDetails = () => {
           priority={true}
         />
         <div className="absolute top-[65%] max-w-[1240px] w-full left-[50%] right-[50%] translate-x-[-50%] translate-y-[30%] z-10 p-2 text-[white]">
-          <h2 >{address}</h2>
+          <h2>{address}</h2>
         </div>
       </div>
       <div className="max-w-[1240px] mx-auto p-4 grid md:grid-cols-1 gap-8 pt-8">
