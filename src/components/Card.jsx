@@ -26,9 +26,8 @@ const Card = () => {
      } else {
       router.push("/LoginPage")
      }
-
-
   },[router])
+  
   return (
     <div>
       <div className='flex flex-row justify-between shadow-lg'>

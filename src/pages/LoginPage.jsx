@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect,useState } from "react"
+import { AiFillEye,AiFillEyeInvisible } from 'react-icons/ai'
 import UsersData from "../../data/users.json"
-
 /* eslint-disable @next/next/no-img-element */
 
 const LoginPage = () => {
@@ -11,7 +11,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState("")
   const [showAlertSuccess, setShowAlertSuccess] = useState(false)
   const [showAlertError, setShowAlertError] = useState(false)
-
+  const [showPassword, setShowPassword] = useState(false)
+  
   useEffect(()=>{
     if(showAlertSuccess) {
       const timeout = setTimeout(()=>{
@@ -50,6 +51,7 @@ const LoginPage = () => {
     if (!userFound) {
       setShowAlertError(true)
     }
+
   }
 
   return (
@@ -70,12 +72,27 @@ const LoginPage = () => {
                 className="border my-2 px-1 placeholder:text-[14px] text-[24px] md:text-[18px]"
                 placeholder="Enter Email"
               ></input>
-              <input
-                value={password}
-                onChange={handleInputPassword}
-                className="border my-2 px-1 placeholder:text-[14px] text-[24px] md:text-[18px]"
-                placeholder="Enter Password"
-              ></input>
+              <div className='relative'>
+                <input
+                  value={password}
+                  onChange={handleInputPassword}
+                  className="border my-2 px-1 placeholder:text-[14px] text-[24px] md:text-[18px]"
+                  placeholder="Enter Password"
+                  type={showPassword ? "" : "password"}
+                ></input>
+                {showPassword ? (
+                  <AiFillEyeInvisible
+                    onClick={() => setShowPassword(false)}
+                    className="absolute  right-0 top-4 cursor-pointer mr-2 "
+                  />
+                ) : (
+                  <AiFillEye
+                    className="cursor-pointer absolute top-4 right-0 mr-2 "
+                    onClick={() => setShowPassword(true)}
+                  />
+                )}
+              </div>
+
               <button
                 onClick={handleAunthentication}
                 className="my-2 border-2 bg-[#04BFA6] rounded-xl text-[white] p-2 hover:bg-[#373964]"
