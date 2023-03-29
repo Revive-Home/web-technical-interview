@@ -60,6 +60,7 @@ const Card = () => {
             zipCode,
             sqft,
             imageUrl,
+            fullAddress
           }) => {
             return (
               <div
@@ -78,7 +79,7 @@ const Card = () => {
                       <div className="flex flex-row justify-between ">
                         <h1 className="font-black tracking-wider">{address}</h1>
                         <div className="bg-[#66c69c] flex items-center justify-center w-[20px] cursor-pointer">
-                          <BsChevronRight onClick={()=>{router.push(`/DetailsPage`)}} className="text-[white] " />
+                          <BsChevronRight onClick={()=>{router.push(`/DetailsPage?address=${fullAddress}&imageUrl=${imageUrl}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&sqft=${sqft}`)}} className="text-[white] " />
                         </div>
                       </div>
                       <p className="text-[gray]">
