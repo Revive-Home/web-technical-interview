@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from "next/router"
 import { useEffect,useState } from 'react'
 import {
-BsChevronRight,BsFillHouseDoorFill
+BsChevronRight,BsCalendarEventFill
 } from "react-icons/bs"
 import { FaToilet } from 'react-icons/fa'
 import { MdBed,MdSquareFoot } from 'react-icons/md'
@@ -27,7 +27,7 @@ const Card = () => {
       router.push("/LoginPage")
      }
   },[router])
-  
+
   return (
     <div>
       <div className='flex flex-row justify-between shadow-lg'>
@@ -59,7 +59,8 @@ const Card = () => {
             zipCode,
             sqft,
             imageUrl,
-            fullAddress
+            fullAddress,
+            yearBuilt
           }) => {
             return (
               <div
@@ -70,15 +71,15 @@ const Card = () => {
                   <img
                     className=" rounded-xl w-full h-auto"
                     src={imageUrl}
-                    alt="house"
+                    alt="picture of house"
                   ></img>
 
                   <div className="bg-slate-50 rounded-xl p-4 absolute bottom-[-30%] w-[84%] shadow-xl">
                     <div className="flex flex-col mb-2">
                       <div className="flex flex-row justify-between ">
-                        <h1 className="font-black tracking-wider">{address}</h1>
+                        <h1 className="font-black tracking-wider ">{address}</h1>
                         <div className="bg-[#66c69c] flex items-center justify-center w-[20px] cursor-pointer">
-                          <BsChevronRight onClick={()=>{router.push(`/DetailsPage?address=${fullAddress}&imageUrl=${imageUrl}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&sqft=${sqft}`)}} className="text-[white] " />
+                          <BsChevronRight onClick={()=>{router.push(`/DetailsPage?address=${fullAddress}&imageUrl=${imageUrl}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&sqft=${sqft}&yearBuilt=${yearBuilt}`)}} className="text-[white] " />
                         </div>
                       </div>
                       <p className="text-[gray]">
@@ -90,17 +91,18 @@ const Card = () => {
                         <MdBed className="text-gray-600" />
                         <p className="pl-1 text-gray-600 ">{bedrooms}</p>
                       </div>
-                      <div className="flex flex-row justify-evenly items-center   ">
-                        <MdSquareFoot className="text-gray-600" />
-                        <p className="pl-1 text-gray-600">{sqft}</p>
-                      </div>
                       <div className="flex flex-row justify-evenly items-center  ">
                         <FaToilet className="text-gray-600" />
                         <p className="pl-1 text-gray-600">{bathrooms}</p>
                       </div>
-                      <div className="flex flex-row justify-evenly items-center ">
-                        <BsFillHouseDoorFill className="text-gray-600" />
+                      <div className="flex flex-row justify-evenly items-center   ">
+                        <MdSquareFoot className="text-gray-600" />
                         <p className="pl-1 text-gray-600">{sqft}</p>
+                      </div>
+
+                      <div className="flex flex-row justify-evenly items-center ">
+                        <BsCalendarEventFill className="text-gray-600" />
+                        <p className="pl-1 text-gray-600">{yearBuilt}</p>
                       </div>
                     </div>
                   </div>
