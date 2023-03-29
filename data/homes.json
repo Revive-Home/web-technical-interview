@@ -9,7 +9,8 @@
     "bedrooms": 4,
     "bathrooms": 2.5,
     "yearBuilt": 2000,
-    "sqft": 2343
+    "sqft": 2343,
+    "imageUrl": "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800"
   },
   {
     "id": 2,
@@ -21,7 +22,8 @@
     "bedrooms": 5,
     "bathrooms": 3.5,
     "yearBuilt": 2001,
-    "sqft": 3200
+    "sqft": 3200,
+    "imageUrl": "https://images.pexels.com/photos/3935333/pexels-photo-3935333.jpeg?auto=compress&cs=tinysrgb&w=800"
   },
   {
     "id": 3,
@@ -33,10 +35,11 @@
     "bedrooms": 4,
     "bathrooms": 1,
     "yearBuilt": 2006,
-    "sqft": 2800
+    "sqft": 2800,
+    "imageUrl": "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=800"
   },
   {
-    "id": 3,
+    "id": 4,
     "address": "68 Sobrante",
     "fullAddress": "68 Sobrante Aliso Viejo, CA 92656",
     "city": "Aliso Viejo",
@@ -45,6 +48,7 @@
     "bedrooms": 2,
     "bathrooms": 2.5,
     "yearBuilt": 2000,
-    "sqft": 1200
+    "sqft": 1200,
+    "imageUrl": "https://images.pexels.com/photos/259593/pexels-photo-259593.jpeg?auto=compress&cs=tinysrgb&w=800"
   }
 ]

@@ -36,10 +36,11 @@ const LoginPage = () => {
     let userFound = false;
     UsersData.map((user) => {
       if (user.email === email.toLowerCase() && user.password === password) {
-        localStorage.setItem('firstname', user.firstname)
+        localStorage.setItem('user', JSON.stringify(user))
         setShowAlertSuccess(true)
         userFound = true
         router.push("/UserPage")
+
         return
       }
     })
@@ -51,10 +52,10 @@ const LoginPage = () => {
 
   return (
     <div className="flex justify-evenly items-center h-screen bg-[#f4f4f5] ">
-      <div className="border-2 border-[#373964] flex flex-col-reverse md:flex-row h-screen md:h-[60%]  w-full max-w-lg mx-auto justify-center md:justify-evenly items-center ">
+      <div className="border-2 flex flex-col-reverse md:flex-row h-screen md:h-[60%]  w-full max-w-lg mx-auto justify-center md:justify-evenly items-center ">
         <div>
           <img
-            className="w-[100px] hidden ml-[20px] md:block"
+            className="w-[100px] hidden  ml-[20px] md:block"
             src="/images/revive.png"
             alt="revive-logo"
           />
@@ -64,23 +65,23 @@ const LoginPage = () => {
               <input
                 value={email}
                 onChange={handleInputEmail}
-                className="border my-2 px-1 placeholder:text-[12px]"
+                className="border my-2 px-1 placeholder:text-[14px] text-[24px] md:text-[18px]"
                 placeholder="Enter Email"
               ></input>
               <input
                 value={password}
                 onChange={handleInputPassword}
-                className="border my-2 px-1 placeholder:text-[12px]"
+                className="border my-2 px-1 placeholder:text-[14px] text-[24px] md:text-[18px]"
                 placeholder="Enter Password"
               ></input>
               <button
                 onClick={handleAunthentication}
-                className="my-2 border-2 bg-[#04BFA6] rounded-xl text-[white] p-2"
+                className="my-2 border-2 bg-[#04BFA6] rounded-xl text-[white] p-2 hover:bg-[#373964]"
                 type="button"
               >
                 Login
               </button>
-              <Link href="/">
+              <Link href="/PasswordReset">
                 <p className="cursor-pointer text-right text-[10px]">
                   Forgot Password
                 </p>
@@ -101,7 +102,7 @@ const LoginPage = () => {
           <img
             src="./images/house.jpeg"
             alt="houseLogin"
-            className="w-[230px] hidden md:block"
+            className="w-[230px] hidden rounded-xl shadow-xl  md:block"
           ></img>
         </div>
       </div>
@@ -125,7 +126,7 @@ const LoginPage = () => {
             role="alert"
           >
             <strong className="font-black">Error! </strong>
-            <span>Invalid Email</span>
+            <span>Invalid Email or Password</span>
           </div>
         </div>
       ) : (
