@@ -11,7 +11,6 @@ const LoginPage = () => {
   const [password, setPassword] = useState("")
   const [showAlertSuccess, setShowAlertSuccess] = useState(false)
   const [showAlertError, setShowAlertError] = useState(false)
-  const [showAlertErrorPassword, setShowAlertErrorPassword] = useState(false)
 
   useEffect(()=>{
     if(showAlertSuccess) {
@@ -33,18 +32,21 @@ const LoginPage = () => {
     setPassword(userPassword)
   }
   const handleAunthentication = () => {
+    // set variable userFound as false
     let userFound = false;
+    //map through UsersData json that I imported above
     UsersData.map((user) => {
+      //if the user email and password match set my local storage user and alert user of successful sign on
+      //set userFound to true and send user to UserPage
       if (user.email === email.toLowerCase() && user.password === password) {
         localStorage.setItem('user', JSON.stringify(user))
         setShowAlertSuccess(true)
         userFound = true
         router.push("/UserPage")
-
         return
       }
     })
-
+   // if user is not found or invalid because of email and password show an alert
     if (!userFound) {
       setShowAlertError(true)
     }
@@ -127,19 +129,6 @@ const LoginPage = () => {
           >
             <strong className="font-black">Error! </strong>
             <span>Invalid Email or Password</span>
-          </div>
-        </div>
-      ) : (
-        <p></p>
-      )}
-      {showAlertErrorPassword ? (
-        <div className="absolute top-2">
-          <div
-            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-            role="alert"
-          >
-            <strong className="font-black">Error! </strong>
-            <span>Invalid Password</span>
           </div>
         </div>
       ) : (

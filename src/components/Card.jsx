@@ -12,11 +12,15 @@ import HomesData from '../../data/homes.json'
 const Card = () => {
   const [firstName, setFirstName] = useState('')
   const router = useRouter()
+
   useEffect(()=>{
+    //clearing local storage if user refreshes page
      window.onbeforeunload = () => {
        localStorage.clear()
      }
+     //setting user storage as variable user
      let user = JSON.parse(localStorage.getItem('user'))
+     //if the user exists set the firstname state if not take user back to login page
      if(user) {
        setFirstName(user.firstname)
      } else {
@@ -31,14 +35,17 @@ const Card = () => {
         <h1 className="py-4 px-4 font-bold sm:text-5xl  text-4xl  text-gray-700">
           Hi, <span className="text-[#04BFA6]">{firstName}!</span>
         </h1>
-        <Link href="/LoginPage">
+        <div>
+          <Link href="/LoginPage">
           <button
-            className=" border-2  bg-[#04BFA6] rounded-xl text-[white] p-2  hover:bg-[#373964]"
+            className=" border-1  bg-[#04BFA6] rounded-lg p-2 m-4 text-[white]   hover:bg-[#373964]"
             type="button"
           >
            Logout
           </button>
         </Link>
+        </div>
+
       </div>
 
       <div className="flex flex-col mt-5 justify-center items-center sm:flex-wrap md:flex-row ">
@@ -71,7 +78,7 @@ const Card = () => {
                       <div className="flex flex-row justify-between ">
                         <h1 className="font-black tracking-wider">{address}</h1>
                         <div className="bg-[#66c69c] flex items-center justify-center w-[20px] cursor-pointer">
-                          <BsChevronRight className="text-[white] " />
+                          <BsChevronRight onClick={()=>{router.push(`/DetailsPage`)}} className="text-[white] " />
                         </div>
                       </div>
                       <p className="text-[gray]">
